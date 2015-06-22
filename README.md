@@ -15,7 +15,7 @@ To import the package:
     gameobject's children I've set up as the various locations to teleport too.  Open up the locations array on the
     Location Switch script to get an idea of how it works.
     
-    ChangePosition: Example for Input:  Positive Button 'l', gravity 1000, dead 0.001, sensitivity 1000
+    ChangePosition: Example for Input:  Positive Button 'l', gravity 1000, dead 0.001, sensitivity 1000, Type "Key or Mouse Button"
  
  RotateLeftandRight: rotates the FPC-MovingVIMS using keyboard or other inpu.  Not used in walking in place code, simply
     for rotating and helping move the construct around the scene.
@@ -26,7 +26,7 @@ To import the package:
     Negative turns off walking in place, also sets it up to reset the users start position once the positive button
     is pressed again.
     
-    ToggleWalking: Examples for Input:  Negative Button 'h', Positive Button 'g', gravity 1000, dead 0.001, sensitivity 1000 
+    ToggleWalking: Examples for Input:  Negative Button 'h', Positive Button 'g', gravity 1000, dead 0.001, sensitivity 1000, Type "Key or Mouse Button"
 
 
 In order for the Kinect stuff to work, the Kinect v2.0 sdk needs to be installed on the computer.  This version was created
