@@ -1,4 +1,5 @@
 To import the package:
+----------------------
 
  In Unity, in the Assets tab select import package -> custom package and find the package file downloaded and import it.
 
@@ -35,6 +36,7 @@ In order for the Kinect stuff to work, the Kinect v2.0 sdk needs to be installed
 
 
 To create the package if you want to save changes:
+--------------------------------------------------
 
  First, find the MasterPrefab in the Project explorer in Unity (should be in the Prefab folder).  
 
