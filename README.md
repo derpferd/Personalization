@@ -29,7 +29,7 @@ To import the package:
     ToggleWalking: Examples for Input:  Negative Button 'h', Positive Button 'g', gravity 1000, dead 0.001, sensitivity 1000 
 
 
-    In order for the Kinect stuff to work, the Kinect v2.0 sdk needs to be installed on the computer.  This version was created
+In order for the Kinect stuff to work, the Kinect v2.0 sdk needs to be installed on the computer.  This version was created
     with KinectSDK-v2.0_1409-Setup retrieved from https://www.microsoft.com/en-us/download/details.aspx?id=44561 .  It is likely 
     that future versions of the kinect will still work as long as there is not radical changes.
 
