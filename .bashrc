@@ -114,11 +114,25 @@ if ! shopt -oq posix; then
 fi
 
 
+
+##########################################################################################
 #Changes display to ->
 PS1='\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[0;31m\]\$ \[\e[m\] \[\e[1;33m\]'
+#This line sticks the prompt to the bottom of the display at all times
+TOLASTLINE=$(tput cup "$LINES")
+PS1="\[$TOLASTLINE\]$PS1"
+
+#adds autocomplete like zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+
+
+
 #personal aliases
 alias ls="ls -Gp"
 #Switchers the google drive icon to the opposite color in order for us to see it
 alias invert="bash ~/Documents/Personalization/googleIconSwitch.sh"
 alias python="python3"
 alias pip="pip3"
+set -o vi
