@@ -123,10 +123,10 @@ TOLASTLINE=$(tput cup "$LINES")
 PS1="\[$TOLASTLINE\]$PS1"
 
 #adds autocomplete like zsh
+#bind 'TAB:menu-complete'
+#bind "set menu-complete-display-prefix on"
 bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
-
-
+[[ $- = *i* ]] && bind TAB:menu-complete
 
 
 #personal aliases

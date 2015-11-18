@@ -110,4 +110,4 @@ colorscheme tron
 set  number
 "Highlight cursor column!!!
 set cursorline cursorcolumn
-
+:hi cursorcolumn ctermbg=Green
