@@ -126,7 +126,7 @@ PS1="\[$TOLASTLINE\]$PS1"
 #bind 'TAB:menu-complete'
 #bind "set menu-complete-display-prefix on"
 bind 'set show-all-if-ambiguous on'
-[[ $- = *i* ]] && bind TAB:menu-complete
+#[[ $- = *i* ]] && bind TAB:menu-complete
 
 
 #personal aliases
