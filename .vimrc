@@ -94,6 +94,10 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+"################################################################
+"Customization
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -110,4 +114,6 @@ colorscheme tron
 set  number
 "Highlight cursor column!!!
 set cursorline cursorcolumn
-:hi cursorcolumn ctermbg=Green
+hi cursorcolumn ctermbg=Brown
+"allow mouse scrolling
+set mouse=a
