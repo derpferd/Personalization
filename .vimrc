@@ -113,8 +113,8 @@ colorscheme tron
 "Always show line numbers in current windows
 set  number
 "Highlight cursor column!!!
-set cursorline cursorcolumn
-hi cursorcolumn ctermbg=Brown
+set cursorline "cursorcolumn
+"hi cursorcolumn ctermbg=Brown
 "allow mouse scrolling
 set mouse=a
 
