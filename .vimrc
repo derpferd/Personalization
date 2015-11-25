@@ -117,3 +117,4 @@ set cursorline cursorcolumn
 hi cursorcolumn ctermbg=Brown
 "allow mouse scrolling
 set mouse=a
+
