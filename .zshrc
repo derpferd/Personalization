@@ -25,8 +25,12 @@ fi
 ##
 parse_git_branch() {
 	#Used to determine if git branch and returns a string if it is
-	  (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
-	}
+	(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+killscreens () {
+	screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
+}
+
 ##
 # LOCAL VARIABLES --------------
 ##
