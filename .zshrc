@@ -14,18 +14,19 @@ bindkey '\e[1;5D' backward-word           # C-Left
 # DIRCOLORS--------------------- 
 ##
 # colors for ls
-if [[ -f ~/.dir_colors ]] ; then
-	eval $(dircolors -b ~/.dir_colors)
-elif [[ -f /etc/DIR_COLORS ]] ; then
-	eval $(dircolors -b /etc/DIR_COLORS)
-fi
+#if [[ -f ~/.dir_colors ]] ; then
+#	eval $(dircolors -b ~/.dir_colors)
+#elif [[ -f /etc/DIR_COLORS ]] ; then
+#	eval $(dircolors -b /etc/DIR_COLORS)
+#fi
 
 ##
 # FUNCTIONS --------------------
 ##
 parse_git_branch() {
 	#Used to determine if git branch and returns a string if it is
-	(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+	# (git symbolic-ref -q HEAD || 
+	(git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
 }
 killscreens () {
 	screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
@@ -34,17 +35,15 @@ killscreens () {
 ##
 # LOCAL VARIABLES --------------
 ##
-ref='%{$fg_bold[magenta]%}$(parse_git_branch)%{$reset_color%}' #For the git path
-directory='%{$fg_bold[green]%}%~%{$reset_color%}' #Directory path
-name='%{$fg_bold[red]%} %n %{$reset_color%}' #Name of user
-
+ref='%{$fg_bold[white]%}$(parse_git_branch)%{$reset_color%}' #For the git path
+directory='%{$fg_bold[cyan]%}%~/%{$reset_color%}' #Directory path
+name='%{$fg_bold[red]%}%n %{$reset_color%}' #Name of user
+arrows='%{$fg_bold[green]%}>%{$reset_color%}%{$fg_bold[red]%}>%{$reset_color%}%{$fg_bold[cyan]%}>  %{$reset_color%}'
 ##
 # PROMPT SETTING ---------------
 ##
-PROMPT="${directory} ::${name}~ ${ref}
-%{$fg[green]%}~> %{$reset_color%}"
-#RPROMPT="[%{$fg_no_bold[cyan]%}%T%{$reset_color%}]"
-RPROMPT='${vim_mode} ${vcs_info_msg_0_}'
+PROMPT="${name}${arrows}"
+RPROMPT="${directory}  ${ref}"
 
 setopt promptsubst #Forces the redraw
 ##
@@ -52,7 +51,10 @@ setopt promptsubst #Forces the redraw
 ##
 alias ls='ls -GF'
 
-
+##
+#MESSAGES
+##
+echo "Remember to log your experiences!"
 
 ##
 ## Completion--------------------
