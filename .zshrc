@@ -31,7 +31,9 @@ parse_git_branch() {
 killscreens () {
 	screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
 }
-
+get_battery_perc(){
+	(ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}')
+}
 ##
 # LOCAL VARIABLES --------------
 ##
@@ -39,10 +41,12 @@ ref='%{$fg_bold[white]%}$(parse_git_branch)%{$reset_color%}' #For the git path
 directory='%{$fg_bold[cyan]%}%~/%{$reset_color%}' #Directory path
 name='%{$fg_bold[red]%}%n %{$reset_color%}' #Name of user
 arrows='%{$fg_bold[green]%}>%{$reset_color%}%{$fg_bold[red]%}>%{$reset_color%}%{$fg_bold[cyan]%}>  %{$reset_color%}'
+Time="[%D{%L:%M:%S}]"
+Batt='${fg_bold[green]%}$(get_battery_perc) %{$reset_color%}'
 ##
 # PROMPT SETTING ---------------
 ##
-PROMPT="${name}${arrows}"
+PROMPT="${name}${Batt}${Time}${arrows}"
 RPROMPT="${directory}  ${ref}"
 
 setopt promptsubst #Forces the redraw
