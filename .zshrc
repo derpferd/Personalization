@@ -41,20 +41,21 @@ ref='%{$fg_bold[white]%}$(parse_git_branch)%{$reset_color%}' #For the git path
 directory='%{$fg_bold[cyan]%}%~/%{$reset_color%}' #Directory path
 name='%{$fg_bold[red]%}%n %{$reset_color%}' #Name of user
 arrows='%{$fg_bold[green]%}>%{$reset_color%}%{$fg_bold[red]%}>%{$reset_color%}%{$fg_bold[cyan]%}>  %{$reset_color%}'
-Time="[%D{%L:%M:%S}]"
-Batt='${fg_bold[green]%}$(get_battery_perc) %{$reset_color%}'
+Time="%D{%L:%M:%S}"
+Batt='${fg_bold[green]%}$(get_battery_perc)% %{$reset_color%}'
 ##
 # PROMPT SETTING ---------------
 ##
-PROMPT="${name}${Batt}${Time}${arrows}"
-RPROMPT="${directory}  ${ref}"
+PROMPT="${name}${directory}  ${ref} ${Batt} ${Time} 
+${arrows}"
+#RPROMPT="${directory}  ${ref}"
 
 setopt promptsubst #Forces the redraw
 ##
 #ALIASES ------------------------
 ##
-alias ls='ls -GF'
-
+alias ls='ls -G'
+alias chaosreader='~/Documents/chaos/chaosreader'
 ##
 #MESSAGES
 ##
@@ -76,5 +77,5 @@ setopt list_ambiguous           # complete as much of a completion until it gets
 zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
 zstyle ':completion:*' menu select=2                        # menu if nb items > 2
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
+zstyle ':completion:*' list-colors 'di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'       # colorz !
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use

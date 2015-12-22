@@ -40,38 +40,6 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
-    else
-    color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -116,22 +84,64 @@ fi
 
 
 ##########################################################################################
-#Changes display to ->
-PS1='\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[0;31m\]\$ \[\e[m\] \[\e[1;33m\]'
-#This line sticks the prompt to the bottom of the display at all times
-TOLASTLINE=$(tput cup "$LINES")
-PS1="\[$TOLASTLINE\]$PS1"
+##
+#FUNCTIONS
+##
+parse_git_branch() {
+	#Used to determine if git branch and returns a string if it is
+	# (git symbolic-ref -q HEAD || 
+	(git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+killscreens () {
+	screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
+}
+get_battery_perc(){
+	(ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}')
+}
+##
+# LOCAL VARIABLES --------------
+##
+BLACK="\[\033[0;30m\]"
+BLACKBOLD="\[\033[1;30m\]"
+RED="\[\033[0;31m\]"
+REDBOLD="\[\033[1;31m\]"
+GREEN="\[\033[0;32m\]"
+GREENBOLD="\[\033[1;32m\]"
+YELLOW="\[\033[0;33m\]"
+YELLOWBOLD="\[\033[1;33m\]"
+BLUE="\[\033[0;34m\]"
+BLUEBOLD="\[\033[1;34m\]"
+PURPLE="\[\033[0;35m\]"
+PURPLEBOLD="\[\033[1;35m\]"
+CYAN="\[\033[0;36m\]"
+CYANBOLD="\[\033[1;36m\]"
+WHITE="\[\033[0;37m\]"
+WHITEBOLD="\[\033[1;37m\]"
 
-#adds autocomplete like zsh
-#bind 'TAB:menu-complete'
-#bind "set menu-complete-display-prefix on"
+
+ref='$(parse_git_branch)\e[0m' #For the git path
+directory='\W' #Directory path
+name='\u' #Name of user
+arrows='>>>'
+Time="\T"
+Batt='$(get_battery_perc)'
+
+
+##
+# PROMPT SETTING ---------------
+##
+PS1="${RED}${name} ${CYAN}${directory}  ${WHITE}${ref} ${GREEN}${Batt} ${RED}${Time} 
+${PURPLE}${arrows}\033[00m\]"
+
+adds autocomplete like zsh
+bind 'TAB:menu-complete'
+bind "set menu-complete-display-prefix on"
 bind 'set show-all-if-ambiguous on'
-#[[ $- = *i* ]] && bind TAB:menu-complete
 
-
-#personal aliases
-alias ls="ls -Gp"
-#Switchers the google drive icon to the opposite color in order for us to see it
+##
+#ALIASES
+##
+alias ls="ls -G"
 alias invert="bash ~/Documents/Personalization/googleIconSwitch.sh"
 alias python="python3"
 alias pip="pip3"
