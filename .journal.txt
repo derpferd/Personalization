@@ -37,54 +37,6 @@ But then to enter copying mode, which is the only wya to get to scroll up in scr
 Just call killscreens to do it. It is a funciton in our zshrc
 
 2015-11-29 15:03 I enabled @screen scrolling by defining a screllback buffer in the screenrc then doing some funky command for the scroll
-
-2015-12-08 16:29 @Workout Chest And Bicepts A
-	Flat Press	: 4 * 6-8
-	Dips		: 3 * 8 -10
-	Incline Fly	: same
-	DB pull over: same
-	Barbell Curl: 4 * 8-10
-	reacher Culr: same
-Back and Tris A
-	Pull ups		: 4 * 8-10
-	Bent Over Row	: 3 * 6-8
-	Deadlifts		: same
-	Hyper Extensions: same
-	Tricept db exten: 4 * 8-10
-	Tricept Pushdown: same
-Legs and Shoulders A
-	Squats			: 4 * 6-8
-	Latera DB raise	: same
-	Leg Extensions	: same
-	Face Pulls		: 3*10
-	Barbell lunge	: 4 * 8-10
-	Barbell Shrug	: same
-	Calf raises
-
-Chest And Bicepts B
-	Incline Press	: 4 * 6-8
-	Dips		: 3 * 8 -10
-	Flat Fly	: same
-	DB pull over: same
-	DB Hammer Curl: 4 * 8-10
-	Concentration Culr: same
-Back and Tris B
-	Underhand pulldown lat machine		: 4 * 8-10
-	Cable Row	: 3 * 6-8
-	Deadlifts		: same
-	DB Row: 4*8-10
-	Hyper Extensions: same
-	Close Grip Bench: 4 * 6-8
-	Tricept Pushdown: same
-Legs and Shoulders A
-	Hack Squat		: 4 * 6-8
-	Dumbell Press	: same
-	Face Pulls		: 3*10
-	Barbell lunge	: 4 * 8-10
-	Latera DB raise	: same
-	DB Shrug	: same
-	Calf raises
-
 2015-12-12 10:24 I installed a iTerm2 build from a git repo in order to get this borderless effect going on.
 Will need to update some things in order to get this nice and working.
 
