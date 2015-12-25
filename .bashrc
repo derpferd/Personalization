@@ -131,9 +131,9 @@ Batt='$(get_battery_perc)'
 # PROMPT SETTING ---------------
 ##
 PS1="${RED}${name} ${CYAN}${directory}  ${WHITE}${ref} ${GREEN}${Batt} ${RED}${Time} 
-${PURPLE}${arrows}\033[00m\]"
+${PURPLE}${arrows}\[\033[00m\]"
 
-adds autocomplete like zsh
+#adds autocomplete like zsh
 bind 'TAB:menu-complete'
 bind "set menu-complete-display-prefix on"
 bind 'set show-all-if-ambiguous on'
