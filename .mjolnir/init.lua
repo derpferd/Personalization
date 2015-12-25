@@ -1,0 +1,65 @@
+local application = require "mjolnir.application"
+local hotkey = require "mjolnir.hotkey"
+local window = require "mjolnir.window"
+local fnutils = require "mjolnir.fnutils"
+local grid        = require "mjolnir.bg.grid"
+local mouse = require "mjolnir._asm.sys.mouse"
+local event = require "mjolnir._asm.eventtap.event"
+local keycodes = require "mjolnir.keycodes"
+local spaces = {}
+--Everything above is modules required for this to work
+--Grid Settings
+grid.GRIDWIDTH  = 12
+grid.GRIDHEIGHT = 12
+grid.MARGINX    = 0
+grid.MARGINY    = 0
+--hotkeys combos
+local mash = {"cmd", "ctrl"}
+local mashshift = {"cmd", "alt", "shift"}
+
+--Below are function declerations
+
+hotkey.bind(mash, 'J', grid.pushwindow_down)
+hotkey.bind(mash, 'K', grid.pushwindow_up)
+hotkey.bind(mash, 'H', grid.pushwindow_left)
+hotkey.bind(mash, 'L', grid.pushwindow_right)
+
+hotkey.bind(mash, 'down', grid.resizewindow_taller)
+hotkey.bind(mash, 'right', grid.resizewindow_wider)
+hotkey.bind(mash, 'left', grid.resizewindow_thinner)
+hotkey.bind(mash, 'up', grid.resizewindow_shorter)
+
+hotkey.bind(mash, "1", function() spaces.movetospace("1") end)
+hotkey.bind(mash, "2", function() spaces.movetospace("2") end)
+hotkey.bind(mash, "3", function() spaces.movetospace("3") end)
+hotkey.bind(mash, "4", function() spaces.movetospace("4") end)
+
+
+--key event function for use with spaces
+function newkeyevent(modifiers, key, ispressed)
+	local kev = event.newkeyevent({}, '', ispressed)
+	kev:setkeycode(keycodes.map[key])
+	kev:setflags(modifiers)
+	return kev
+end
+--spaces function
+function spaces.movetospace(key)
+	spaces.modifiers = {cmd = true}
+	local win = window.focusedwindow()
+	if win == nil then
+		newkeyevent(spaces.modifiers, key, true):post()
+		newkeyevent(spaces.modifiers, key, false):post()
+	else
+		local position0 = mouse.get()
+		local frame = win:frame()
+		local position = {x=frame.x + 65, y=frame.y + 7}
+		event.newmouseevent(event.types.mousemoved, position, 'left'):post()
+		os.execute("sleep 0.1")
+		event.newmouseevent(event.types.leftmousedown, position, 'left'):post()
+		newkeyevent(spaces.modifiers, key, true):post()
+		newkeyevent(spaces.modifiers, key, false):post()
+		event.newmouseevent(event.types.leftmousedown, position, 'left'):post()
+		event.newmouseevent(event.types.leftmouseup, position, 'left'):post()
+		event.newmouseevent(event.types.mousemoved, position0, 'left'):post()
+	end
+end
