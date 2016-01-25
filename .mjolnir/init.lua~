@@ -6,6 +6,14 @@ local grid        = require "mjolnir.bg.grid"
 local mouse = require "mjolnir._asm.sys.mouse"
 local event = require "mjolnir._asm.eventtap.event"
 local keycodes = require "mjolnir.keycodes"
+local hints = require "mjolnir.th.hints"
+
+--Hotkey binding
+hotkey.bind({"cmd"},"e",hints.windowHints)
+-- This switches between windows of the focused app
+hotkey.bind({"ctrl","cmd"},"d",function() hints.appHints(window.focusedwindow():application()) end)
+
+--needed for spaces
 local spaces = {}
 --Everything above is modules required for this to work
 --Grid Settings
@@ -29,7 +37,11 @@ hotkey.bind(mash, 'right', grid.resizewindow_wider)
 hotkey.bind(mash, 'left', grid.resizewindow_thinner)
 hotkey.bind(mash, 'up', grid.resizewindow_shorter)
 
+hotkey.bind(mash, "1", function() spaces.movetospace("1") end)
 hotkey.bind(mash, "2", function() spaces.movetospace("2") end)
+hotkey.bind(mash, "3", function() spaces.movetospace("3") end)
+hotkey.bind(mash, "4", function() spaces.movetospace("4") end)
+
 
 --key event function for use with spaces
 function newkeyevent(modifiers, key, ispressed)

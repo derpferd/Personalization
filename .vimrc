@@ -97,6 +97,9 @@ endif
 
 "################################################################
 "Customization
+"The below remaps esc command to jj
+:imap jj <Esc> 
+
 
 set tabstop=4
 set shiftwidth=4
