@@ -94,12 +94,13 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
-"################################################################
+"----------------------------------
 "Customization
 "The below remaps esc command to jj
 :imap jj <Esc> 
 
+"Set all copy commands in vim to copy to clipboard
+set clipboard=unnamed
 
 set tabstop=4
 set shiftwidth=4

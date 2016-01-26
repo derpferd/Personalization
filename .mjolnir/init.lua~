@@ -8,19 +8,21 @@ local event = require "mjolnir._asm.eventtap.event"
 local keycodes = require "mjolnir.keycodes"
 local hints = require "mjolnir.th.hints"
 
+--Rebind Hints
+hints.HINTCHARS = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
 --Hotkey binding
 hotkey.bind({"cmd"},"e",hints.windowHints)
 -- This switches between windows of the focused app
-hotkey.bind({"ctrl","cmd"},"d",function() hints.appHints(window.focusedwindow():application()) end)
+hotkey.bind({"ctrl","cmd"},"e",function() hints.appHints(window.focusedwindow():application()) end)
 
 --needed for spaces
 local spaces = {}
 --Everything above is modules required for this to work
 --Grid Settings
-grid.GRIDWIDTH  = 12
-grid.GRIDHEIGHT = 12
-grid.MARGINX    = 0
-grid.MARGINY    = 0
+grid.GRIDWIDTH  = 10
+grid.GRIDHEIGHT = 8
+grid.MARGINX    = 5
+grid.MARGINY    = 5
 --hotkeys combos
 local mash = {"cmd", "ctrl"}
 local mashshift = {"cmd", "alt", "shift"}

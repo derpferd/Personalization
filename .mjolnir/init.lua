@@ -17,10 +17,10 @@ hotkey.bind({"ctrl","cmd"},"e",function() hints.appHints(window.focusedwindow():
 local spaces = {}
 --Everything above is modules required for this to work
 --Grid Settings
-grid.GRIDWIDTH  = 12
-grid.GRIDHEIGHT = 12
-grid.MARGINX    = 0
-grid.MARGINY    = 0
+grid.GRIDWIDTH  = 10
+grid.GRIDHEIGHT = 8
+grid.MARGINX    = 5
+grid.MARGINY    = 5
 --hotkeys combos
 local mash = {"cmd", "ctrl"}
 local mashshift = {"cmd", "alt", "shift"}
